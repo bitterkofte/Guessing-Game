@@ -1,18 +1,15 @@
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 
-function FancyButton({title, color}) {
+function FancyButton({title, color, isPressed}) {
     function press(){
         console.log('pressed');
     }
-    // const addColor = (style, color) =>{
-    //     return {
-    //         ...style,
-    //         backgroundColor: color || "black"
-    //     }
-    // }
+
     return (
         <View style={[styles.outer, {backgroundColor: color || '#0041ba'}]} >
-            <Pressable style={styles.inner} onPress={press} android_ripple={{color: "#d4ff00"}} >
+            <Pressable  style={styles.inner}
+                        onPress={isPressed}
+                        android_ripple={{color: "#d4ff00"}}>
                 <Text style={styles.text}>{title}</Text>
             </Pressable>
         </View>
@@ -31,9 +28,8 @@ const styles = StyleSheet.create({
     outer: {
         margin: 4,
         width: 90,
-        
         borderRadius: 28,
-        overflow: 'hidden',
+        overflow: 'hidden', //clips the effect that overflows the border
     }, 
 
     text: {
